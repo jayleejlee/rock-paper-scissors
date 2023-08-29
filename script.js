@@ -1,7 +1,27 @@
 let playerWinCount = 0;
 let computerWinCount = 0;
 
+let computerSelection;
+let playerSelection;
+
+function getPlayerChoice() {
+    playerSelection = prompt("Choose from the following: Rock, paper, scissors", "rock").toLowerCase();
+}
+
+var threeOptions = ["rock", "paper", "scissors"];
+
+function getComputerChoice(){
+    computerSelection = threeOptions[Math.floor(Math.random() * threeOptions.length)];
+}
+
 function playRound(playerSelection, computerSelection) {
+
+    console.log("Player: " + playerSelection);
+    console.log("Computer: " + computerSelection);
+
+    let playerWin = "You win! " + playerSelection + " beats " + computerSelection + ".";
+    let playerLose = "You lose... " + computerSelection + " beats " + playerSelection + ".";
+    let playerTie = "It's a draw. Player and computer both chose " + playerSelection + ".";
 
     if (playerSelection == "rock") {
         if (computerSelection == "rock") {
@@ -9,7 +29,6 @@ function playRound(playerSelection, computerSelection) {
         } else if (computerSelection == "paper") {
             computerWinCount++;
             return playerLose;
-            playerWinCount++;
         } else if (computerSelection == "scissors") {
             playerWinCount++;
             return playerWin;
@@ -37,38 +56,38 @@ function playRound(playerSelection, computerSelection) {
     } else {
         console.log("You did not type rock, paper or scissors. Please try again.");
     }
+
 }
 
-const playerSelection = prompt("Choose from the following: Rock, paper, scissors", "rock").toLowerCase();
-const computerSelection = "rock";
 
-console.log("Player chose: " + playerSelection);
-console.log("Computer chose: " + computerSelection);
+function game() {
 
-const playerWin = "You win! " + playerSelection + " beats " + computerSelection;
-const playerLose = "You lose. " + computerSelection + " beats " + playerSelection;
-const playerTie = "You are tied. Player and computer both chose " + playerSelection;
+    for (let i = 1; i <= 5; i++) {
 
-console.log(playRound(playerSelection, computerSelection));
-console.log("Player : " + playerWinCount);
-console.log("Computer : " + computerWinCount);
+        console.log("Game number " + i);
 
-// for (let i = 0; i < 5; i++) {
-//     console.log(playRound(playerSelection, computerSelection));
-// }
+        getPlayerChoice();
+        getComputerChoice()
 
+        console.log(playRound(playerSelection, computerSelection));
 
-
-// function capitalizeFirstLetter(str) {
-//     const playerSelection = str.charAt(0).toUpperCase() + str.slice(1);
-
-//     return playerSelection;
-
-// }
+        console.log("\n");
+        console.log("Current score: ");
+        console.log("Player : " + playerWinCount);
+        console.log("Computer : " + computerWinCount);
+        console.log("\n");
 
 
-//capitalizeFirstLetter(playerSelection);
+    }
 
+    if (playerWinCount < computerWinCount) {
+        console.log("The computer wins...(as always)");
+    } else if (playerWinCount > computerWinCount) {
+        console.log("A WINNER IS YOU");
+    } else {
+        console.log("We have a tie.");
+    }
 
-//const computerSelection = getComputerChoice();
-// console.log(playRound(playerSelection, computerSelection));
+}
+
+game();
