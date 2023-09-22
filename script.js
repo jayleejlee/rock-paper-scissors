@@ -8,7 +8,7 @@ function getPlayerChoice() {
     playerSelection = prompt("Choose from the following: Rock, paper, scissors", "rock").toLowerCase();
 }
 
-var threeOptions = ["rock", "paper", "scissors"];
+let threeOptions = ["rock", "paper", "scissors"]; 
 
 function getComputerChoice(){
     computerSelection = threeOptions[Math.floor(Math.random() * threeOptions.length)];
@@ -59,7 +59,6 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-
 function game() {
 
     for (let i = 1; i <= 5; i++) {
@@ -76,8 +75,6 @@ function game() {
         console.log("Player : " + playerWinCount);
         console.log("Computer : " + computerWinCount);
         console.log("\n");
-
-
     }
 
     if (playerWinCount < computerWinCount) {
